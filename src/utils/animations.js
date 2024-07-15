@@ -1,3 +1,20 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export const animateWithGsap = (target, animationProps, scrollProps) => {
+  gsap.to(target, {
+    ...animationProps,
+    scrollTrigger: {
+      trigger: target,
+      toggleActions: "restart reverse restart reverse", // 'Enter the target element' + 'Exit the target element' + 'passing the target element by scrolling down' + 'passing the target element by scrolling up'
+      start: "top 85%", // start the animation when the target element is 85% from the top (position) of the viewport
+      ...scrollProps,
+    },
+  });
+};
+
 export const animateWithGsapTimeline = (
   timeline,
   rotationRef,
